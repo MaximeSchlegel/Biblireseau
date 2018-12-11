@@ -1,7 +1,3 @@
-//
-// Created by mimmo on 11/12/2018.
-//
-
 #ifndef BIBLIRESEAU_POETRY_H
 #define BIBLIRESEAU_POETRY_H
 

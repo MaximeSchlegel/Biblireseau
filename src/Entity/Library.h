@@ -1,12 +1,8 @@
-//
-// Created by Altar on 11/12/2018.
-//
-
 #ifndef BIBLIRESEAU_LIBRARY_H
 #define BIBLIRESEAU_LIBRARY_H
 
 #include "Entity.h"
-#include "User.h"
+#include "../Book/Book.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -20,10 +16,7 @@ private:
     vector<Book> bookList;
 
 public:
-    Library(string name="libraryName", string address="libraryAdress", vector<Book> bookList=vector<Book>);
-
-
+    Library(string name="", string address="");
 };
-
 
 #endif //BIBLIRESEAU_LIBRARY_H

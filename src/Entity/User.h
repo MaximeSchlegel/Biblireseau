@@ -1,15 +1,11 @@
-//
-// Created by mimmo on 11/12/2018.
-//
-
 #ifndef BIBLIRESEAU_USER_H
 #define BIBLIRESEAU_USER_H
-#include<string>
+
 #include "Entity.h"
 #include "Library.h"
-#include "Book.h"
+#include "../Book/Book.h"
+#include <string>
 #include <vector>
-
 using namespace std;
 
 class User : public Entity {
@@ -19,10 +15,13 @@ private:
     string name ;
     string surname ;
     string address ;
-    string telephone ;
+    string phone ;
     Library registered ;
     int maxBorrowing ;
-    std::vector<Book> bookList ;
+    vector<Book> bookList ;
+
+public:
+    User(string name="", string surname="", string address="", string phone="");
 };
 
 
