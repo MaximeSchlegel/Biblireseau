@@ -3,3 +3,5 @@
 //
 
 #include "Library.h"
+
+int Library::created = 0;
