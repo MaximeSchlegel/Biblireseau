@@ -15,9 +15,13 @@ class Library : public Entity {
 private:
     static int created;
     int id;
-    string nom;
+    string name;
     string adddress;
     vector<Book> bookList;
+
+public:
+    Library(string name="libraryName", string address="libraryAdress", vector<Book> bookList=vector<Book>);
+
 
 };
 
