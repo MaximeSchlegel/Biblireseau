@@ -1,9 +1,6 @@
 #ifndef BIBLIRESEAU_ENTITY_H
 #define BIBLIRESEAU_ENTITY_H
 
-class Entity {
-
-};
-
+class Entity {};
 
 #endif //BIBLIRESEAU_ENTITY_H

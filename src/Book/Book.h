@@ -1,10 +1,11 @@
 #ifndef BIBLIRESEAU_BOOK_H
 #define BIBLIRESEAU_BOOK_H
 
-#include "../Entity/Entity.h"
 #include<string>
 using namespace std;
 
+class Library;
+class Entity;
 
 class Book {
 private:
@@ -15,9 +16,11 @@ private:
     string editor;
     string ISBN;
     string audience;
-    Entity owner;
-    Entity location;
+    Library* owner;
+    Entity* location;
 
+public:
+    Book(string name="", string author="", string editor="", string ISBN="", string audiance="");
 };
 
 
