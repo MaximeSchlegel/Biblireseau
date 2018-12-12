@@ -14,4 +14,21 @@ Library::Library(string name, string address) {
     }
     this->name = name;
     this->adddress = address;
+
+}
+
+int Library::getId(){
+    return id;
+}
+
+string &Library::getName() {
+    return name;
+}
+
+string &Library::getAdddress() {
+    return adddress;
+}
+
+vector<Book *> &Library::getBookList() {
+    return bookList;
 }

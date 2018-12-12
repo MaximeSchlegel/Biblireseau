@@ -14,11 +14,21 @@ private:
     int id;
     string name;
     string adddress;
-    vector<Book*> bookList;
+    vector<Book *> bookList;
 
 
 public:
     Library(string name="", string address="");
+    int getId();
+    string &getName();
+    string &getAdddress();
+    vector<Book *> &getBookList();
+    void ajouter(Book * book);
+    void supprimer(Book * book);
+    void demander(string ISBN);
+    void rendre(string ISBN);
+
+
 };
 
 #endif //BIBLIRESEAU_LIBRARY_H
