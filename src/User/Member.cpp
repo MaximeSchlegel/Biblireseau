@@ -49,15 +49,15 @@ int Member::getMaxBorrowing() const {
 }
 
 ostream &operator<<(ostream &os, const Member &member) {
-    os << "TYPE : Member" << endl;
-    os << "id : " << member.getId() << endl;
-    os << "Name : " << member.getName() << endl;
-    os << "Surname : " << member.getSurname() << endl;
-    os << "Address : " << member.getAddress() << endl;
-    os << "Phone Number : " << member.getPhone() << endl;
-    os << "Registered at : " << member.getRegistered() << endl;
-    os << "Maximum Borrowing Capacity : " << member.getMaxBorrowing() << endl;
-    os << "Book List : ";
+    os << "Type: Member" << endl;
+    os << "id: " << member.getId() << endl;
+    os << "Name: " << member.getName() << endl;
+    os << "Surname: " << member.getSurname() << endl;
+    os << "Address: " << member.getAddress() << endl;
+    os << "Phone Number: " << member.getPhone() << endl;
+    os << "Registered at: " << member.getRegistered() << endl;
+    os << "Maximum Borrowing Capacity: " << member.getMaxBorrowing() << endl;
+    os << "Book List: ";
     vector<int> bookList = member.getBook();
     if (not empty(bookList)) {
         for (int i = 0; i < bookList.size() - 1; i++) {

@@ -10,6 +10,7 @@ int main() {
     User user1 = User(false);
 	Library library1 = Library("MyFirstLibrary", "Ici");
 	Member mem1 = Member ("Michel");
-	cout << user1 << library1 << mem1;
+	Book book1 = Book("Le c++ pour les nuls");
+	cout << user1 << library1 << mem1 << book1;
 	return 0;
 }

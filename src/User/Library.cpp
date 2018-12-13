@@ -25,11 +25,11 @@ string const &Library::getAddress() const {
 }
 
 ostream &operator<<(ostream &os,  const Library &library) {
-    os << "TYPE : Library" << endl;
-    os << "id : " << library.getId() << endl;
+    os << "Type: Library" << endl;
+    os << "id: " << library.getId() << endl;
     os << "name: " << library.getName() << endl;
     os <<  "address: " << library.getAddress() << endl;
-    os << "Book List : ";
+    os << "Book List: ";
     vector<int> bookList = library.getBook();
     if (not empty(bookList)) {
         for (int i=0; i<bookList.size()-1; i++) {
@@ -42,3 +42,7 @@ ostream &operator<<(ostream &os,  const Library &library) {
     }
     return os;
 }
+
+void Library::showBook() {}
+
+void Library::showBook(string category) {}

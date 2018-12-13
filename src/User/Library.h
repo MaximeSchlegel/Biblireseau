@@ -18,10 +18,14 @@ private:
 public:
     Library();
     Library(string name, string address="");
+
     string const &getName() const;
     string const &getAddress() const;
 
     friend ostream &operator<<(ostream &os, const Library &library);
+
+    void showBook();
+    void showBook(string category);
 };
 
 

@@ -1,10 +1,11 @@
 #ifndef BIBLIRESEAU_USER_H
 #define BIBLIRESEAU_USER_H
 
+
 #include <vector>
 #include <ostream>
-
 using namespace std;
+
 
 class User {
 private:
@@ -13,6 +14,7 @@ private:
     vector<int> bookList;
 
 public:
+    User();
     User(bool isEmpty);
 
     int getId() const;

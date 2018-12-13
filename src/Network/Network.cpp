@@ -2,7 +2,7 @@
 
 
 Network::Network() {
-    this->userList.emplace(0,User(false));
+    this->userList.emplace(0,User());
     this->bookList.emplace(0,Book());
 }
 

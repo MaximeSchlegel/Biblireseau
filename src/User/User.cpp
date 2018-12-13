@@ -3,13 +3,17 @@
 
 int User::created = 0;
 
+User::User() {
+    id = 0 ;
+}
+
 User::User(bool isEmpty) {
     if (isEmpty) {
         User::created++;
-        this->id = User::created;
+        id = User::created;
     }
     else {
-        this->id = 0;
+        id = 0;
     }
 }
 
@@ -22,7 +26,7 @@ vector<int> const & User::getBook() const {
 }
 
 std::ostream &operator<<(std::ostream &os, const User &user) {
-    os << "TYPE : user" << endl;
+    os << "Type: user" << endl;
     os << "id: " << user.getId() << endl;
     os << "bookList: ";
     vector<int> bookList = user.getBook();
