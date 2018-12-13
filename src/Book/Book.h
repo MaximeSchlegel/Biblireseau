@@ -16,11 +16,12 @@ private:
     string editor;
     string ISBN;
     string audience;
-    Library* owner;
-    Entity* location;
+    int owner;
+    int location;
 
 public:
-    Book(string name="", string author="", string editor="", string ISBN="", string audiance="");
+    Book();
+    Book(string name, string author="", string editor="", string ISBN="", string audiance="",int creator=0);
 };
 
 
