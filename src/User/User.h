@@ -2,6 +2,8 @@
 #define BIBLIRESEAU_USER_H
 
 #include <vector>
+#include <ostream>
+
 using namespace std;
 
 class User {
@@ -12,7 +14,11 @@ private:
 
 public:
     User(bool isEmpty);
-    int getId();
+
+    int getId() const;
+    vector<int> const &getBook() const;
+
+    friend std::ostream &operator<<(std::ostream &os, const User &user);
 };
 
 

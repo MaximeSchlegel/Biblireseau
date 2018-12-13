@@ -5,6 +5,8 @@
 #include "User.h"
 #include <string>
 #include <vector>
+#include <ostream>
+
 using namespace std;
 
 
@@ -16,8 +18,10 @@ private:
 public:
     Library();
     Library(string name, string address="");
-    string getName();
-    string getAddress();
+    string const &getName() const;
+    string const &getAddress() const;
+
+    friend ostream &operator<<(ostream &os, const Library &library);
 };
 
 

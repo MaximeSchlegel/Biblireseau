@@ -7,9 +7,9 @@ using namespace std;
 
 
 int main() {
+    User user1 = User(false);
 	Library library1 = Library("MyFirstLibrary", "Ici");
-	cout << library1.getId() << endl;
-	cout << library1.getName() << endl;
-	cout << library1.getAddress() << endl;
+	Member mem1 = Member ("Michel");
+	cout << user1 << library1 << mem1;
 	return 0;
 }
