@@ -4,21 +4,21 @@
 
 #include "../User/User.h"
 #include "../Book/Book.h"
-#include <vector>
+#include <map>
 using namespace std;
 
 
 class Network {
 private:
-    vector<User> userList;
-    vector<Book> bookList;
+    map<int,User> userList;
+    map<int,Book> bookList;
 
 public:
     Network();
-    User* getPUser(int id);
-    Book* getPBook (int id);
+    User getPUser(int id);
+    Book getPBook (int id);
     void addUser (User newUser);
-    void addBook (Book book);
+    void addBook (Book newBook);
 };
 
 

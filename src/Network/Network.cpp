@@ -2,14 +2,14 @@
 
 
 Network::Network() {
-    this->userList.push_back(User(false));
-    this->bookList.push_back(Book());
+    this->userList.emplace(0,User(false));
+    this->bookList.emplace(0,Book());
 }
 
-User* Network::getPUser(int id) {
-    return &userList[id];
+User Network::getPUser(int id) {
+    return userList[id];
 }
 
-Book* Network::getPBook(int id) {
-    return &bookList[id];
+Book Network::getPBook(int id) {
+    return bookList[id];
 }
