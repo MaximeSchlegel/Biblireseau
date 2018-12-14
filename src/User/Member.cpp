@@ -16,8 +16,7 @@ Member::Member() {
 Member::Member(string name, string surname, string address, string phone, int maxBorrowing) {
     if (empty(name)) {
         this->id = 0;
-    }
-    else {
+    } else {
         Member::created++;
         this->id = Member::created;
     }
@@ -67,8 +66,7 @@ void Member::setRegister(Library *library) {
     if (this->registered) {
         cout << this->id << " has already sign in" << endl;
         throw int (3);
-    }
-    else {
+    } else {
         this->registered = library;
     }
 }
@@ -99,13 +97,12 @@ void Member::addBook(Book *book) {
     try {
         book->setLocation(this);
         this->bookList.push_back(book);
-    }
-    catch (int i) {
+    } catch (int i) {
         throw i;
     }
 }
 
-void Member::borrow(int bookId) {
+void Member::borrowBook(int bookId) {
     if (this->registered->getId() == 0) {
         cout << this->id << " needs to register" << endl;
         throw int(4);
@@ -117,13 +114,32 @@ void Member::borrow(int bookId) {
                 this->registered->removeBook(answer.second);
                 this->addBook(answer.second);
             }
-        }
-        catch (int i) {
+        } catch (int i) {
             throw i;
         }
-    }
-    else {
+    } else {
         cout << this->id << " has reach his borrowing capacity limit" << endl;
         throw int(5);
+    }
+}
+
+void Member::returnBook(int bookId) {
+    if (this->registered) {
+        for (int i=0; i<this->bookList.size(); i++) {
+            if (this->bookList[i]->getId() == bookId) {
+                try {
+                    this->registered->addBook(this->bookList[i]);
+                    this->bookList.erase(this->bookList.begin() + i);
+                } catch (int i) {
+                    throw i;
+                }
+                return;
+            }
+        }
+        cout << this->id << " doesn't have the book " << bookId << endl;
+        throw int(6);
+    } else {
+        cout << this->id << " needs to sign in" << endl;
+        throw int(4);
     }
 }

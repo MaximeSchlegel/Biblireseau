@@ -7,21 +7,19 @@ Library::Library() {
     this->id = 0;
     this->name ="";
     this->address = "";
-
 }
-
 
 Library::Library(string name, string address) {
     if (empty(name)) {
         this->id = 0;
-    }
-    else {
+    } else {
         Library::created++;
         this->id = Library::created;
     }
     this->name = name;
     this->address = address;
 }
+
 
 int Library::getId() const {
     return id;
@@ -38,6 +36,7 @@ string const &Library::getAddress() const {
 vector<Book*> const & Library::getBook() const {
     return bookList;
 }
+
 
 ostream &operator<<(ostream &os,  const Library &library) {
     os << "Type: Library" << endl;
@@ -75,12 +74,12 @@ void Library::showBook(string category) {
     }
 }
 
+
 void Library::addBook(Book* book) {
     try {
         book->setLocation(this);
         this->bookList.push_back(book);
-    }
-    catch (int i) {
+    } catch (int i) {
         throw i;
     }
 }
@@ -92,8 +91,10 @@ void Library::removeBook(Book *book) {
             return;
         }
     }
-    throw string("Book ins't in this Library");
+    cout << book->getId() <<  "ins't in this Library" << endl;
+    throw int(7);
 }
+
 
 pair<bool, Book*> Library::haveBook(int bookId) {
     for (int i=0; i < this->bookList.size(); i++) {
@@ -117,9 +118,54 @@ void Library::buyBook(Book* book) {
     try {
         book->setOwner(this);
         this->addBook(book);
+    } catch (int i) {
+        throw i;
+    }
+}
+
+void Library::trashBook(int bookId) {
+    try {
+        pair<bool, Book*> answer = this->haveBook(bookId);
+        if (answer.first) {
+            this->removeBook(answer.second);
+        } else {
+            cout << bookId <<  "ins't in this Library" << endl;
+            throw int(7);
+        }
     }
     catch (int i) {
         throw i;
     }
 }
 
+void Library::askBook(string ISBN, Library* library) {
+    if (this == library) {
+        cout << "Can't ask yourselve for book" << endl;
+        throw (8);
+    }
+    try {
+        pair<bool, Book*> answer = library->haveBook(ISBN);
+        if (answer.first) {
+            library->removeBook(answer.second);
+            this->addBook(answer.second);
+        } else {
+            cout << this->id << " doesn't have the book " << ISBN << endl;
+            throw int(9);
+        }
+    } catch (int i) {
+        throw i;
+    }
+}
+
+void Library::returnBooks() {
+    for (int i=0; i<this->bookList.size(); i++) {
+        if (this->bookList[i]->getOwner() != this->id) {
+            try {
+                this->bookList[i]->getOwner()->addBook(this->bookList[i]);
+                this->removeBook(this->bookList[i]);
+            } catch (int i) {
+                throw i;
+            }
+        }
+    }
+}

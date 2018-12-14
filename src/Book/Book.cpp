@@ -92,14 +92,16 @@ ostream &operator<<(ostream &os, const Book &book) {
     os << "editor: " << book.editor << endl;
     os << "ISBN: " << book.ISBN << endl;
     os << "audience: " << book.audience << endl;
-    os << "owner: " << book.owner->getName() << endl;
+    if (book.owner) {
+        os << "owner: " << book.owner->getName() << endl;
+    } else {
+        os << "owner: " << endl;
+    }
     if (book.location) {
         os << "location: " << book.location->getName() << endl;
-    }
-    else {
+    } else {
         os << "location: " << endl;
     }
-
     return os;
 }
 

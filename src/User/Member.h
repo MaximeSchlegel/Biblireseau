@@ -39,7 +39,8 @@ public:
 
     void addBook (Book* book);
 
-    void borrow (int bookId);
+    void borrowBook (int bookId);
+    void returnBook (int bookId);
 };
 
 

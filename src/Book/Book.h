@@ -27,7 +27,7 @@ private:
 
 public:
     Book();
-    Book(string name, string author="", string editor="", string ISBN="", string audiance="");
+    Book(string name, string ISBN, string author="", string editor="", string audiance="");
 
     int getId() const;
     const string &getTitle() const;

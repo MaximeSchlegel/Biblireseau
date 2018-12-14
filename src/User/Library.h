@@ -39,7 +39,9 @@ public:
     pair<bool, Book*> haveBook (string ISBN);
 
     void buyBook (Book* book);
-    void askBook ();
+    void trashBook (int bookId);
+    void askBook (string ISBN, Library* library);
+    void returnBooks ();
 };
 
 

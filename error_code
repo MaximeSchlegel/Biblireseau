@@ -1,5 +1,9 @@
 1   Book already own
 2   Book needs an owner
 3   Member has already sign in
-4   Member needs to sign in;
+4   Member needs to sign in
 5   Member has reach his borrowing capacity limit
+6   Member doesn't have the book
+7   Book isn't in this library
+8   Can't ask yourselve for book
+9   Library doesn't have this book
