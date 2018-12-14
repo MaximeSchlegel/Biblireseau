@@ -10,11 +10,10 @@ class Book;
 
 class User {
 public:
-    User();
-    virtual int getId() const;
-    virtual string const &getName() const;
-    virtual string const &getAddress() const;
-    virtual vector<Book*> const &getBook() const;
+    virtual int getId() const = 0;
+    virtual string const &getName() const = 0;
+    virtual string const &getAddress() const = 0;
+    virtual vector<Book*> const &getBook() const = 0;
 };
 
 

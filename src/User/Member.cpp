@@ -10,7 +10,7 @@ Member::Member() {
     this->address = "";
     this->phone = "";
     this->maxBorrowing = 0;
-//    this->registered = NULL;
+    this->registered = 0;
 }
 
 Member::Member(string name, string surname, string address, string phone, int maxBorrowing) {
@@ -26,7 +26,7 @@ Member::Member(string name, string surname, string address, string phone, int ma
     this->address = address;
     this->phone = phone;
     this->maxBorrowing = maxBorrowing;
-    this->registered = new Library;
+    this->registered = 0;
 }
 
 
@@ -64,9 +64,9 @@ vector<Book *> const &Member::getBook() const {
 
 
 void Member::setRegister(Library *library) {
-    if (this->registered->getId() != 0) {
+    if (this->registered) {
         cout << this->id << " has already sign in" << endl;
-        throw int (4);
+        throw int (3);
     }
     else {
         this->registered = library;
@@ -81,9 +81,8 @@ ostream &operator<<(ostream &os, const Member &member) {
     os << "Surname: " << member.getSurname() << endl;
     os << "Address: " << member.getAddress() << endl;
     os << "Phone Number: " << member.getPhone() << endl;
-    os << "Registered at: ";
-    os << member.getRegistered()->getName();
-    os << endl << "Maximum Borrowing Capacity: " << member.getMaxBorrowing() << endl;
+    os << "Registered at: " << member.getRegistered()->getName() << endl;
+    os  << "Maximum Borrowing Capacity: " << member.getMaxBorrowing() << endl;
     os << "Book List: ";
     vector<Book*> bookList = member.getBook();
     if (not empty(bookList)) {
@@ -109,7 +108,7 @@ void Member::addBook(Book *book) {
 void Member::borrow(int bookId) {
     if (this->registered->getId() == 0) {
         cout << this->id << " needs to register" << endl;
-        throw int(5);
+        throw int(4);
     }
     if (this->bookList.size() < this->maxBorrowing) {
         try {
@@ -125,6 +124,6 @@ void Member::borrow(int bookId) {
     }
     else {
         cout << this->id << " has reach his borrowing capacity limit" << endl;
-        throw int(6);
+        throw int(5);
     }
 }

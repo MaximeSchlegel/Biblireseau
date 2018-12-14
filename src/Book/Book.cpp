@@ -12,8 +12,8 @@ Book::Book(){
     this->editor = "";
     this->ISBN = "";
     this->audience = "";
-    this->owner = new Library;
-    this->location = new User;
+    this->owner = 0;
+    this->location = 0;
 }
 
 Book::Book(string title, string author, string editor, string ISBN, string audiance) {
@@ -24,8 +24,8 @@ Book::Book(string title, string author, string editor, string ISBN, string audia
     this->editor = editor;
     this->ISBN = ISBN;
     this->audience = audiance;
-    this->owner = new Library;
-    this->location = new User;
+    this->owner = 0;
+    this->location = 0;
 }
 
 
@@ -63,13 +63,13 @@ User *Book::getLocation() const {
 
 
 void Book::setOwner(Library *owner) {
-    if (this->owner->getId() == 0) {
-        this->owner = owner;
-        this->location = owner;
-    }
-    else {
+    if (this->owner) {
         cout << this->id << " already own" << endl;
         throw int(1) ;
+    }
+    else {
+        this->owner = owner;
+        this->location = owner;
     }
 }
 
@@ -92,8 +92,14 @@ ostream &operator<<(ostream &os, const Book &book) {
     os << "editor: " << book.editor << endl;
     os << "ISBN: " << book.ISBN << endl;
     os << "audience: " << book.audience << endl;
-    os << "owner: " << book.owner->getName();
-    os << endl << "location: " << book.location->getName() << endl;
+    os << "owner: " << book.owner->getName() << endl;
+    if (book.location) {
+        os << "location: " << book.location->getName() << endl;
+    }
+    else {
+        os << "location: " << endl;
+    }
+
     return os;
 }
 

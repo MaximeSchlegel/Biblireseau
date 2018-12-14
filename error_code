@@ -1,6 +1,5 @@
 1   Book already own
 2   Book needs an owner
-3   Book already lent to an user
-4   Member has already sign in
-5   Member needs to sign in;
-6   Member has reach his borrowing capacity limit
+3   Member has already sign in
+4   Member needs to sign in;
+5   Member has reach his borrowing capacity limit
