@@ -2,10 +2,16 @@
 #define BIBLIRESEAU_BOOK_H
 
 
+#include "../User/User.h"
+#include "../User/Library.h"
+#include <typeinfo>
 #include<string>
 #include <ostream>
 using namespace std;
 
+
+class User;
+class Library;
 
 class Book {
 private:
@@ -16,12 +22,12 @@ private:
     string editor;
     string ISBN;
     string audience;
-    int owner;
-    int location;
+    Library * owner;
+    User * location;
 
 public:
     Book();
-    Book(string name, string author="", string editor="", string ISBN="", string audiance="",int creator=0);
+    Book(string name, string author="", string editor="", string ISBN="", string audiance="");
 
     int getId() const;
     const string &getTitle() const;
@@ -29,10 +35,15 @@ public:
     const string &getEditor() const;
     const string &getISBN() const;
     const string &getAudience() const;
-    int getOwner() const;
-    int getLocation() const;
+    Library* getOwner() const;
+    User* getLocation() const;
+
+    void setOwner(Library* owner);
+    void setLocation(User* newLocation);
 
     friend ostream &operator<<(ostream &os, const Book &book);
+
+    bool borrowed ();
 };
 
 

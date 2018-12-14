@@ -1,4 +1,6 @@
 #include "Book.h"
+#include "../User/Member.h"
+
 using namespace std;
 
 int Book::created = 0;
@@ -10,12 +12,11 @@ Book::Book(){
     this->editor = "";
     this->ISBN = "";
     this->audience = "";
-    this->owner = 0;
-    this->location = 0;
-
+    this->owner = new Library;
+    this->location = new User;
 }
 
-Book::Book(string title, string author, string editor, string ISBN, string audiance, int creator) {
+Book::Book(string title, string author, string editor, string ISBN, string audiance) {
     Book::created++;
     this->id = Book::created;
     this->title = title;
@@ -23,9 +24,10 @@ Book::Book(string title, string author, string editor, string ISBN, string audia
     this->editor = editor;
     this->ISBN = ISBN;
     this->audience = audiance;
-    this->owner = creator;
-    this->location = creator;
+    this->owner = new Library;
+    this->location = new User;
 }
+
 
 int Book::getId() const {
     return id;
@@ -51,13 +53,36 @@ const string &Book::getAudience() const {
     return audience;
 }
 
-int Book::getOwner() const {
+Library *Book::getOwner() const {
     return owner;
 }
 
-int Book::getLocation() const {
+User *Book::getLocation() const {
     return location;
 }
+
+
+void Book::setOwner(Library *owner) {
+    if (this->owner->getId() == 0) {
+        this->owner = owner;
+        this->location = owner;
+    }
+    else {
+        cout << this->id << " already own" << endl;
+        throw int(1) ;
+    }
+}
+
+void Book::setLocation(User *newLocation) {
+    if (this->owner->getId() == 0) {
+        cout << this->id << " need an owner" << endl;
+        throw int(2);
+    }
+    else {
+        this->location = newLocation;
+    }
+}
+
 
 ostream &operator<<(ostream &os, const Book &book) {
     os << "Type: Book" << endl;
@@ -67,7 +92,15 @@ ostream &operator<<(ostream &os, const Book &book) {
     os << "editor: " << book.editor << endl;
     os << "ISBN: " << book.ISBN << endl;
     os << "audience: " << book.audience << endl;
-    os << "owner: " << book.owner << endl;
-    os << "location: " << book.location << endl;
+    os << "owner: " << book.owner->getName();
+    os << endl << "location: " << book.location->getName() << endl;
     return os;
+}
+
+
+bool Book::borrowed() {
+    if (dynamic_cast<Member *>(this->location)) {
+        return true;
+    }
+    return false;
 }

@@ -2,33 +2,44 @@
 #define BIBLIRESEAU_MEMBER_H
 
 #include "User.h"
+#include "Library.h"
+#include "../Book/Book.h"
 #include <string>
 #include <vector>
 #include <ostream>
 using namespace std;
 
-
 class Member : public User {
 private:
+    static int created;
+    int id;
     string name;
     string surname;
     string address;
     string phone;
-    int registered;
+    Library* registered;
     int maxBorrowing;
-
+    vector<Book*> bookList;
 public:
     Member();
-    Member(string name, string surname="", string address="", string phone="", int signIn=0, int maxBorrowing = 3);
+    Member(string name, string surname="", string address="", string phone="", int maxBorrowing = 3);
 
+    int getId() const;
     const string &getName() const;
     const string &getSurname() const;
     const string &getAddress() const;
     const string &getPhone() const;
-    int getRegistered() const;
+    Library* getRegistered() const;
     int getMaxBorrowing() const;
+    vector<Book*> const &getBook () const;
+
+    void setRegister (Library* library);
 
     friend ostream &operator<<(ostream &os, const Member &member);
+
+    void addBook (Book* book);
+
+    void borrow (int bookId);
 };
 
 

@@ -6,21 +6,15 @@
 #include <ostream>
 using namespace std;
 
+class Book;
 
 class User {
-private:
-    static int created;
-    int id;
-    vector<int> bookList;
-
 public:
     User();
-    User(bool isEmpty);
-
-    int getId() const;
-    vector<int> const &getBook() const;
-
-    friend std::ostream &operator<<(std::ostream &os, const User &user);
+    virtual int getId() const;
+    virtual string const &getName() const;
+    virtual string const &getAddress() const;
+    virtual vector<Book*> const &getBook() const;
 };
 
 
