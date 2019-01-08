@@ -18,10 +18,6 @@ private:
 
 public:
     Network();
-//    User getPUser(int id);
-//    Book getPBook (int id);
-//    void addUser (User newUser);
-//    void addBook (Book newBook);
 };
 
 

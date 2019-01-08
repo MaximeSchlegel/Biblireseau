@@ -1,4 +1,5 @@
 #include "Book/Book.h"
+#include "Book/Poetry.h"
 #include "User/Library.h"
 #include "User/Member.h"
 #include <iostream>
@@ -39,13 +40,28 @@ int main() {
     cout << book1 << endl;
 
     mem1.returnBook(1);
-    cout<<book1;
+    cout<<book1 << endl;
 
     library1.askBook("06", &library2);
     cout << library1 << endl;
     cout << library2 << endl;
 
-    library2.askBook("09", &library1);
+    Poetry p1 = Poetry();
+    Poetry p2 = Poetry("Les fleurs du mal", "11");
+//    library2.askBook("09", &library1);
 
+    library2.buyBook(&p2);
+    library2.showBook("Poetry");
 	return 0;
 }
+
+/*lecture de fichiers :
+ * ifstream ifs("path.csv")
+ * string ch1,ch2, ch3;
+ * char c
+ *
+ * ch1 << ifs
+ * c << ifs
+ * ch2 << ifs
+ * c << ifs
+ * ch3 << ifs*/

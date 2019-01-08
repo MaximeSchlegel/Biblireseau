@@ -159,7 +159,7 @@ void Library::askBook(string ISBN, Library* library) {
 
 void Library::returnBooks() {
     for (int i=0; i<this->bookList.size(); i++) {
-        if (this->bookList[i]->getOwner() != this->id) {
+        if (this->bookList[i]->getOwner()->getId() != this->id) {
             try {
                 this->bookList[i]->getOwner()->addBook(this->bookList[i]);
                 this->removeBook(this->bookList[i]);

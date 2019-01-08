@@ -16,7 +16,7 @@ Book::Book(){
     this->location = 0;
 }
 
-Book::Book(string title, string author, string editor, string ISBN, string audiance) {
+Book::Book(string title, string ISBN, string author, string editor, string audiance) {
     Book::created++;
     this->id = Book::created;
     this->title = title;
