@@ -41,6 +41,7 @@ public:
     void buyBook (Book* book);
     void trashBook (int bookId);
     void askBook (string ISBN, Library* library);
+    void returnBook(int bookId);
     void returnBooks ();
 };
 

@@ -157,6 +157,22 @@ void Library::askBook(string ISBN, Library* library) {
     }
 }
 
+void Library::returnBook(int bookId) {
+    for (int i=0; i<this->bookList.size(); i++){
+        if (this->bookList[i]->getOwner()->getId() != this->id) {
+            try {
+                this->bookList[i]->getOwner()->addBook(this->bookList[i]);
+                this->removeBook(this->bookList[i]);
+            } catch (int i) {
+                throw i;
+            }
+        } else {
+            cout << "Book " << bookId << " is own by the library " << this->getId() << endl;
+            throw 10;
+        }
+    }
+}
+
 void Library::returnBooks() {
     for (int i=0; i<this->bookList.size(); i++) {
         if (this->bookList[i]->getOwner()->getId() != this->id) {
