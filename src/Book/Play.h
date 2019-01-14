@@ -5,7 +5,14 @@
 #include "Book.h"
 
 class Play : public Book {
-    int century ;
+    private:
+        int century ;
+
+    public:
+        Play();
+        Play(string name, string ISBN, string author="", string editor="", string audiance="", int century=0);
+        int getCentury() const;
+
 };
 
 

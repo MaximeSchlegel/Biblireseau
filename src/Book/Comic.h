@@ -9,8 +9,13 @@
 #include "Book.h"
 
 class Comic : public Book {
-private:
-    string cartoonist ;
+    private:
+        string cartoonist;
+
+    public:
+        Comic();
+        Comic(string name, string ISBN, string author="", string editor="", string audiance="", string cartoonist="");
+        const string &getCartoonist() const;
 };
 
 

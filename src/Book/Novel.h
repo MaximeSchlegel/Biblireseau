@@ -10,9 +10,14 @@
 #include "Book.h"
 
 class Novel : public Book {
-private:
-    static std::vector<string> listGenre ;
-    string genre ;
+    private:
+        string genre;
+
+    public:
+        Novel();
+        Novel(string name, string ISBN, string author="", string editor="", string audiance="", string genre="");
+        static const vector<string> &getValidGenre();
+        const string &getGenre() const;
 };
 
 
