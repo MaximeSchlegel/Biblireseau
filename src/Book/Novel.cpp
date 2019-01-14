@@ -16,7 +16,7 @@ Novel::Novel()
 Novel::Novel(string name, string ISBN, string author, string editor, string audiance, string genre)
       :Book(name, ISBN, author, editor, audiance) {
     bool isValid = false;
-    for (int i = 0; i < validGenre.size(); i++) {
+    for (int i=0; i < validGenre.size(); i++) {
         if (validGenre[i] == genre) {
             isValid = true;
         }
