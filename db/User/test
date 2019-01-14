@@ -1,8 +1,0 @@
-id:int
-name:string
-surname:string
-address:string
-phone:string
-registered:library_id
-maxBorrowing:int
-bookList:book_id

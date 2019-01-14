@@ -37,6 +37,9 @@ vector<Book*> const & Library::getBook() const {
     return bookList;
 }
 
+int Library::getCreated() const {
+    return created;
+}
 
 ostream &operator<<(ostream &os,  const Library &library) {
     os << "Type: Library" << endl;
