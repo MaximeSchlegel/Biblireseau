@@ -56,7 +56,7 @@ int main() {
     library2.buyBook(&p2);
     library2.showBook("Poetry");
 
-    Network network1 = Network();
+    Network network1 = Network("My Network");
     network1.main_menu();
 
 	return 0;

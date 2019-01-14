@@ -16,16 +16,16 @@ private:
     map<int,Library> libraryList;
     map<int,Member> memberList;
     map<int,Book> bookList;
-    int member_menu();
-    int library_menu();
-    int member_authentificated_menu(Member member);
-    int member_borrow_menu(Member member);
-    int member_return_menu(Member member);
-    int member_confirm_borrow_menu(Member member, Book book);
+    void member_menu();
+    void library_menu();
+    void member_authentificated_menu(Member member);
+    void member_borrow_menu(Member member);
+    void member_return_menu(Member member);
+    void member_confirm_borrow_menu(Member member, Book book);
 
 public:
-    Network();
-    int main_menu() ;
+    Network(string name);
+    void main_menu() ;
 
     const string &getName() const;
 
