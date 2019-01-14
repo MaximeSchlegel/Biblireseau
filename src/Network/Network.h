@@ -12,19 +12,20 @@ using namespace std;
 
 class Network {
 private:
+    string name;
     map<int,Library> libraryList;
     map<int,Member> memberList;
     map<int,Book> bookList;
-    void main_menu() ;
-    void member_menu();
-    void library_menu();
-    void member_authentificated_menu(Member member);
-    void member_borrow_menu(Member member);
-    void member_return_menu(Member member);
-    void clear();
+    int member_menu();
+    int library_menu();
+    int member_authentificated_menu(Member member);
+    int member_borrow_menu(Member member);
+    int member_return_menu(Member member);
+    int member_confirm_borrow_menu(Member member, Book book);
 
 public:
     Network();
+    int main_menu() ;
 };
 
 

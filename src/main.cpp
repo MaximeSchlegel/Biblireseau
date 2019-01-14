@@ -2,6 +2,7 @@
 #include "Book/Poetry.h"
 #include "User/Library.h"
 #include "User/Member.h"
+#include "Network/Network.h"
 #include <iostream>
 using namespace std;
 
@@ -52,6 +53,10 @@ int main() {
 
     library2.buyBook(&p2);
     library2.showBook("Poetry");
+
+    Network network1 = Network();
+    network1.main_menu();
+
 	return 0;
 }
 
