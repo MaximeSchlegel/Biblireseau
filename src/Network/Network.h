@@ -17,11 +17,24 @@ private:
     map<int,Member> memberList;
     map<int,Book> bookList;
     void member_menu();
-    void library_menu();
     void member_authentificated_menu(Member member);
     void member_borrow_menu(Member member);
     void member_return_menu(Member member);
     void member_confirm_borrow_menu(Member member, Book book);
+    void member_confirm_return_menu(Member member, Book book);
+    void admin_menu();
+    void admin_create_book();
+    void admin_create_album();;
+    void admin_create_comic();
+    void admin_create_novel();
+    void admin_create_play();
+    void admin_create_poetry();
+    void admin_create_library();
+    void admin_create_member();
+    void admin_confirm_create_book();
+    void admin_confirm_create_library();
+    void admin_confirm_create_member();
+    void library_menu();
 
 public:
     Network(string name);
