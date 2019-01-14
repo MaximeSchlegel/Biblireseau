@@ -10,6 +10,16 @@ using namespace std;
 
 void SaveManager::save(Network network) {
     ofstream myfile;
-    myfile.open (network.name + ".txt");
-    for (int i=0; i<Library::)
+    myfile.open (network.getName() + ".txt");
+    myfile << network.getName() << "\n";
+    map<int, Library> libraryMap = network.getLibraryList();
+    for (int id=1; id<Library().getCreated(); id++) {
+        try {
+            Library current = libraryMap[id];
+            myfile << "{\nLibrary\nid:" << id << "\n name:" << current.getName() << "\naddress:" << current.getAddress() << "\n}\n";
+        }
+        catch (error_code) {}
+        myfile.close();
+        return 0;
+    }
 }

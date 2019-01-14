@@ -28,7 +28,7 @@ public:
     string const &getName() const;
     string const &getAddress() const;
     vector<Book*> const &getBook() const;
-    int getCreated() const ();
+    int getCreated() const;
 
     friend ostream &operator<<(ostream &os, const Library &library);
     void showBook();
