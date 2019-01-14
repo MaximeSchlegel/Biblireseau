@@ -26,6 +26,14 @@ private:
 public:
     Network();
     int main_menu() ;
+
+    const string &getName() const;
+
+    const map<int, Library> &getLibraryList() const;
+
+    const map<int, Member> &getMemberList() const;
+
+    const map<int, Book> &getBookList() const;
 };
 
 

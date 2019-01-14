@@ -82,7 +82,7 @@ int Network::member_borrow_menu(Member member) {
     }
     cout << "Code correct. \n";
     book = bookList[id];
-
+    this->member_confirm_borrow_menu(member, book);
     return 0;
 }
 
@@ -107,4 +107,20 @@ int Network::library_menu() {
 
 int Network::member_return_menu(Member member) {
     return 0;
+}
+
+const string &Network::getName() const {
+    return name;
+}
+
+const map<int, Library> &Network::getLibraryList() const {
+    return libraryList;
+}
+
+const map<int, Member> &Network::getMemberList() const {
+    return memberList;
+}
+
+const map<int, Book> &Network::getBookList() const {
+    return bookList;
 }
