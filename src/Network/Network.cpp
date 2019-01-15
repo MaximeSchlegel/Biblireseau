@@ -8,6 +8,35 @@ Network::Network(string name) {
     this->bookList.emplace(0,Book());
 }
 
+
+const string &Network::getName() const {
+    return name;
+}
+
+const map<int, Library> &Network::getLibraryList() const {
+    return libraryList;
+}
+
+const map<int, Member> &Network::getMemberList() const {
+    return memberList;
+}
+
+const map<int, Book> &Network::getBookList() const {
+    return bookList;
+}
+
+void Network::addLibrary(Library library) {
+    this->libraryList.insert(pair<int,Library>(library.getId(),library));
+}
+
+void Network::addMember(Member member) {
+    this->memberList.insert(pair<int,Member>(member.getId(),member));
+}
+
+void Network::addBook(Book book) {
+    this->bookList.insert(pair<int,Book>(book.getId(),book));
+}
+
 void Network::main_menu() {
     int choice ;
     cout << "\n \nBienvenue dans le logiciel de gestion du r\202seau nationnnal des Bilblioth\212ques \n \n" ;
@@ -145,12 +174,35 @@ void Network::member_confirm_return_menu(Member member, Book book){
     }
 }
 
+void Network::library_menu() {
+    int id;
+    Library library;
+    cout << "Entrez votre num\202ro de bibliothèque pour vous connecter \n ou entrez 0 pour retourner au menu principal: ";
+    cin >> id;
+    while (id >= libraryList.size() or id < 0) {
+        cout << "\n \nCe num\202ro de bibliothèque n'existe pas. \n";
+        cout << "Entrez votre num\202ro adh\202rent pour vous connecter ou entrez 0 pour retourner au menu principal: ";
+        cin >> id;
+    }
+    if (id == 0 ){
+        this->main_menu();
+        exit(0);
+    }
+    cout << "Identifiant correct. Connexion en cours. \n";
+    library = libraryList[id];
+    this -> library_authentificated_menu(library);
+}
+
+
+
+void Library::library_authentificated_menu(Library library) {
+
+}
+
 void Network::admin_menu(){
     int choice;
     cout << "\n \nBienvenue sur l'interface administrateur du logiciel du r\202seau nationnal des bibliothèques";
-    cout << "Appuyez sur 1 pour créer un livre,";
-    cout << "Appuyez sur 2 pour créer une biblioth\212que,";
-    cout << "Appuyez sur 3 pour créer un adh\202rent,";
+    cout << "Appuyez sur 1 pour supprimer un membre,";
     cout << "Appuyez sur 4 pour vous déconnecter\n \n";
     cout << "Puis validez avec la touche Entr\202e \n";
     cin >> choice ;
@@ -172,23 +224,23 @@ void Network::admin_menu(){
     }
 }
 
-void Network::admin_create_book() {
-    int choice;
-    cout << "\n \nBienvenue sur l'interface de cr\202ation de livres.";
-    //cout << "\n \nEntrez les donn\202es du livre que vous voulez créer : ";
-    cout << "Apuuyez sur 1 pour créer un album,\n";
-    cout << "Appuyez sur 2 pour créer une bande dssinnée,\n";
-    cout << "Appuyez sur 3 pour créer un roman,\n";
-    cout << "Appuyer sur 4 pour créer une pièce de théâtre,\n";
-    cout << "Appuyez sur 5 pour créer un recueil de poésie,\n";
-    cout << "Appuyez sur 6 pour retourner au menu principal.";
-    cout << "\n \nPuis validez avec la touche Entrée : \n \n";
-    cin >> choice;
-    while (not (choice == 1 or choice == 2 or choice == 3 or choice == 4 or choice == 5 or choice == 6)){
-        cout << "\n \nAppuyez sur une touche entre 1 et 6, puis validez avec la touche Entr\202e \n";
-        cin >> choice;
-    }
-}
+//void Network::library_buy_book_memu() {
+//    int choice;
+//    cout << "\n \nBienvenue sur l'interface de cr\202ation de livres.";
+//    //cout << "\n \nEntrez les donn\202es du livre que vous voulez créer : ";
+//    cout << "Apuuyez sur 1 pour créer un album,\n";
+//    cout << "Appuyez sur 2 pour créer une bande dssinnée,\n";
+//    cout << "Appuyez sur 3 pour créer un roman,\n";
+//    cout << "Appuyer sur 4 pour créer une pièce de théâtre,\n";
+//    cout << "Appuyez sur 5 pour créer un recueil de poésie,\n";
+//    cout << "Appuyez sur 6 pour retourner au menu principal.";
+//    cout << "\n \nPuis validez avec la touche Entrée : \n \n";
+//    cin >> choice;
+//    while (not (choice == 1 or choice == 2 or choice == 3 or choice == 4 or choice == 5 or choice == 6)){
+//        cout << "\n \nAppuyez sur une touche entre 1 et 6, puis validez avec la touche Entr\202e \n";
+//        cin >> choice;
+//    }
+//}
 
 void Network::admin_create_library() {
     cout << "Pas encore cod\202";
@@ -198,22 +250,6 @@ void Network::admin_create_member() {
     cout << "Pas encore cod\202";
 }
 
-void Network::library_menu() {
-    cout << "Pas encore cod\202";
-}
 
-const string &Network::getName() const {
-    return name;
-}
 
-const map<int, Library> &Network::getLibraryList() const {
-    return libraryList;
-}
 
-const map<int, Member> &Network::getMemberList() const {
-    return memberList;
-}
-
-const map<int, Book> &Network::getBookList() const {
-    return bookList;
-}

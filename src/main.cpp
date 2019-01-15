@@ -1,10 +1,15 @@
 #include "Book/Book.h"
+#include "Book/Album.h"
+#include "Book/Comic.h"
+#include "Book/Novel.h"
+#include "Book/Play.h"
 #include "Book/Poetry.h"
 #include "User/Library.h"
 #include "User/Member.h"
 #include "Network/Network.h"
+#include "Network/SaveManager.h"
 #include <iostream>
-// for convenience
+#include <fstream>
 
 using namespace std;
 
@@ -56,10 +61,12 @@ int main() {
     library2.buyBook(&p2);
     library2.showBook("Poetry");
 
-    Network network1 = Network("My Network");
+    Network network1 = Network("MyNetwork");
+    SaveManager save = SaveManager();
+    save.save(network1);
     network1.main_menu();
 
-	return 0;
+    return 0;
 }
 
 /*lecture de fichiers :
