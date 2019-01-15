@@ -53,7 +53,7 @@ public:
     const map<int, Book> &getBookList() const;
     void addLibrary(Library library);
     void addBook(Book book);
-    void addMember(Member member)
+    void addMember(Member member);
 };
 
 

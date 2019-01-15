@@ -66,6 +66,11 @@ int main() {
     save.save(network1);
     network1.main_menu();
 
+    ofstream file;
+    file.open("test.txt");
+    file << "Hello World";
+    file.close();
+
     return 0;
 }
 

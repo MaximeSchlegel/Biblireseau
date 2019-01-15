@@ -56,7 +56,7 @@ void Network::main_menu() {
         this->library_menu();
     }
     if (choice == 1997){
-        this-> admin_menu();
+//        this-> admin_menu();
     }
 }
 
@@ -190,39 +190,33 @@ void Network::library_menu() {
     }
     cout << "Identifiant correct. Connexion en cours. \n";
     library = libraryList[id];
-    this -> library_authentificated_menu(library);
+//    this -> library_authentificated_menu(library);
 }
 
-
-
-void Library::library_authentificated_menu(Library library) {
-
-}
-
-void Network::admin_menu(){
-    int choice;
-    cout << "\n \nBienvenue sur l'interface administrateur du logiciel du r\202seau nationnal des bibliothèques";
-    cout << "Appuyez sur 1 pour supprimer un membre,";
-    cout << "Appuyez sur 4 pour vous déconnecter\n \n";
-    cout << "Puis validez avec la touche Entr\202e \n";
-    cin >> choice ;
-    while (not (choice == 1 or choice == 2 or choice == 3 or choice == 4)){
-        cout << "\n \nAppuyez sur 1,2,3 ou 4, puis validez avec la touche Entr\202e \n";
-        cin >> choice;
-    }
-    if (choice == 1) {
-        this->admin_create_book();
-    }
-    if (choice == 2) {
-        this->admin_create_library();
-    }
-    if (choice == 3){
-        this-> admin_create_member();
-    }
-    if (choice == 4){
-        this->main_menu();
-    }
-}
+//void Network::admin_menu(){
+//    int choice;
+//    cout << "\n \nBienvenue sur l'interface administrateur du logiciel du r\202seau nationnal des bibliothèques";
+//    cout << "Appuyez sur 1 pour supprimer un membre,";
+//    cout << "Appuyez sur 4 pour vous déconnecter\n \n";
+//    cout << "Puis validez avec la touche Entr\202e \n";
+//    cin >> choice ;
+//    while (not (choice == 1 or choice == 2 or choice == 3 or choice == 4)){
+//        cout << "\n \nAppuyez sur 1,2,3 ou 4, puis validez avec la touche Entr\202e \n";
+//        cin >> choice;
+//    }
+//    if (choice == 1) {
+//        this->admin_create_book();
+//    }
+//    if (choice == 2) {
+//        this->admin_create_library();
+//    }
+//    if (choice == 3){
+//        this-> admin_create_member();
+//    }
+//    if (choice == 4){
+//        this->main_menu();
+//    }
+//}
 
 //void Network::library_buy_book_memu() {
 //    int choice;
