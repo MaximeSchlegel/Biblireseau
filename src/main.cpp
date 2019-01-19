@@ -59,18 +59,19 @@ int main() {
 //    library2.askBook("09", &library1);
 
     library2.buyBook(&p2);
-    library2.showBook("Poetry");
+    cout << library2 << endl;
+    library2.showBook();
+    library2.showBook(&p1);
 
     Network network1 = Network("MyNetwork");
+    network1.addLibrary(library1);
+    network1.addLibrary(library2);
     SaveManager save = SaveManager();
-    save.save(network1);
-    network1.main_menu();
+    save.save(network1, """D:/Utilisateurs/Altar/CLionProjects/Biblireseau/db/""");
+//    network1.main_menu();
 
-    ofstream file;
-    file.open("test.txt");
-    file << "Hello World";
-    file.close();
-
+    Network copie = save.load("""D:/Utilisateurs/Altar/CLionProjects/Biblireseau/db/MyNetwork.txt""");
+    cout << copie.getName() << endl;
     return 0;
 }
 

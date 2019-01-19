@@ -10,8 +10,9 @@
 
 class SaveManager {
     public:
-        void save(Network network);
+        void save(Network network, string path="");
         Network load(string path);
+        vector<string> split (string, char);
 };
 
 

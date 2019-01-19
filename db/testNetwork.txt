@@ -1,6 +1,17 @@
-{
-Type:"Library"
-arg1:""
-arg2:
-
-}
+<Network>
+name: mynetwork;
+</Network>
+<Library>
+id:1;
+name:myFirstLibrary;
+address:ici;
+</Library>
+<Member>
+id:1;
+name:name11;
+surname:surname11;
+address:;
+phone:;
+registered:1;
+maxBorrowing:3;
+</Member>

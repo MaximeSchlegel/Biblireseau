@@ -1,4 +1,11 @@
 #include "Library.h"
+#include "../Book/Album.h"
+#include "../Book/Comic.h"
+#include "../Book/Novel.h"
+#include "../Book/Play.h"
+#include "../Book/Poetry.h"
+#include <map>
+
 using namespace std;
 
 int Library::created = 0;
@@ -66,11 +73,11 @@ void Library::showBook() {
     }
 }
 
-void Library::showBook(string category) {
-    cout << category << " from " << this->getName() << endl;
+void Library::showBook(Book* category) {
+    cout << typeid(category).name() << " from " << this->getName() << endl;
     if (not empty(this->bookList)) {
         for (int i = 0; i < this->bookList.size(); i++) {
-            if (typeid(this->bookList[i]).name() == category) {
+            if (typeid(this->bookList[i]) == typeid(category)) {
                 cout << "    - " << this->bookList[i]->getTitle() << endl;
             }
         }

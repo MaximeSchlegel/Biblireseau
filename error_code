@@ -8,4 +8,7 @@
 8   Can't ask yourselve for book
 9   Library doesn't have this book
 10  Book is own by the library
-11 Not a valid Genre
+11  Not a valid Genre
+12  File doesn't exist
+13  Two Network in the file
+14 Unable to load network properties
