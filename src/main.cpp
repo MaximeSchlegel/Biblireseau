@@ -72,6 +72,7 @@ int main() {
 
     Network copie = save.load("""D:/Utilisateurs/Altar/CLionProjects/Biblireseau/db/MyNetwork.txt""");
     cout << copie.getName() << endl;
+
     return 0;
 }
 

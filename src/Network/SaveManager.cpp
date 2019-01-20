@@ -11,20 +11,39 @@ using namespace std;
 void SaveManager::save(Network network, string path) {
     ofstream file;
     file.open (path + string(network.getName()) + string(".txt"), std::fstream::trunc);
-    file <<  "<Network>\nname:" <<  network.getName() << "\n</Network>" << endl;
+    file <<  "<Network>\nname:\"" <<  network.getName() << "\"\n</Network>" << endl;
 
     map<int, Library> libraryMap = network.getLibraryList();
     for (int id=1; id<libraryMap.size(); id++) {
         try {
             Library current = libraryMap[id];
             cout << current << endl;
-            file << "<Library>\nid:" << id << "\nname:" << current.getName() << "\naddress:" << current.getAddress() << "\n</Library>" << endl;
+            file << "<Library>\nid:\"" << id << "\"\nname:\"" << current.getName() << "\"\naddress:\"" << current.getAddress() << "\"\n</Library>" << endl;
             cout << "coucou";
         }
         catch (error_code) {
             cout << "error" << endl;
         }
     }
+//    map<int, Member> memberMap = network.getMemberList();
+//    for (int id=1; id<libraryMap.size(); id++) {
+//        try {
+//            Member current = memberMap[id];
+//            cout << current <<endl;
+//            file << '<Member>\nid:"' << id << '"\nname:"' << current.getName() << '"\nsurname:"' << current.getSurname() << '"\naddress"' << current.getAddress() << '"\nphone:"' << current.getPhone() << '"\nregistered:"';
+//            if (current.getRegistered()) {
+//                file << current.getRegistered()->getId();
+//            }
+//            file << '"\nmaxBorrowing:"' << current.getMaxBorrowing() << '"\nbookList:"';
+//            for(int j=0; j<current.getBook().size(); j++) {
+//                file << current.getBook()[id] << ';';
+//            }
+//            file << '"\n</Member'<<endl;
+//        }
+//        catch (error_code) {
+//            cout << "error" << endl;
+//        }
+//    }
     file.close();
     cout << "Save finish" << endl;
 }
@@ -53,7 +72,7 @@ Network SaveManager::load(string path) {
                 string networkName;
                 getline(file, networkName, ':');
                 getline(file, networkName);
-                networkProp.push_back(string(networkName);
+                networkProp.push_back(string(networkName));
                 cout << networkName << endl;
                 getline(file, line);
                 cout << "Hello   " << line << endl;

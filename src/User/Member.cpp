@@ -79,7 +79,12 @@ ostream &operator<<(ostream &os, const Member &member) {
     os << "Surname: " << member.getSurname() << endl;
     os << "Address: " << member.getAddress() << endl;
     os << "Phone Number: " << member.getPhone() << endl;
-    os << "Registered at: " << member.getRegistered()->getName() << endl;
+    os << "Registered at: ";
+    if (member.getRegistered()) {
+        os << member.getRegistered()->getName() << endl;
+    } else {
+        os << endl;
+    }
     os  << "Maximum Borrowing Capacity: " << member.getMaxBorrowing() << endl;
     os << "Book List: ";
     vector<Book*> bookList = member.getBook();
