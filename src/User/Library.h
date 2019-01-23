@@ -33,7 +33,7 @@ public:
 
     friend ostream &operator<<(ostream &os, const Library &library);
     void showBook();
-    void showBook(String category);
+    void showBook(string category);
 
     void addBook (Book* book);
     void removeBook (Book* book);
