@@ -23,3 +23,7 @@ bool Album::isPicture() const {
 bool Album::isDrawing() const {
     return drawing;
 }
+
+string Album::getType() const {
+    return "Album";
+}

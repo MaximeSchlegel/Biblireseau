@@ -6,6 +6,11 @@
 #include "../User/Library.h"
 #include "../User/Member.h"
 #include "../Book/Book.h"
+#include "../Book/Album.h"
+#include "../Book/Comic.h"
+#include "../Book/Novel.h"
+#include "../Book/Play.h"
+#include "../Book/Poetry.h"
 #include <map>
 using namespace std;
 

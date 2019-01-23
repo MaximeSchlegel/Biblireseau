@@ -61,6 +61,9 @@ User *Book::getLocation() const {
     return location;
 }
 
+string Book::getType() const {
+    return "Book";
+}
 
 void Book::setOwner(Library *owner) {
     if (this->owner) {

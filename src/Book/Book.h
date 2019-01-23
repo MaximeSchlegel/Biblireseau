@@ -37,6 +37,7 @@ public:
     const string &getAudience() const;
     Library* getOwner() const;
     User* getLocation() const;
+    virtual string getType() const;
 
     void setOwner(Library* owner);
     void setLocation(User* newLocation);

@@ -37,3 +37,7 @@ const vector<string> &Novel::getValidGenre() {
 const string &Novel::getGenre() const {
     return genre;
 }
+
+string Novel::getType() const {
+    return "Novel";
+}

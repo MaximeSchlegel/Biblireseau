@@ -61,6 +61,13 @@ vector<Book *> const &Member::getBook() const {
     return bookList;
 }
 
+int Member::getCreated() const {
+    return Member::created;
+}
+
+string const Member::getType() const {
+    return "Member";
+}
 
 void Member::setRegister(Library *library) {
     if (this->registered) {

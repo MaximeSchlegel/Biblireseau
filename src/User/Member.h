@@ -32,6 +32,9 @@ public:
     Library* getRegistered() const;
     int getMaxBorrowing() const;
     vector<Book*> const &getBook () const;
+    int getCreated() const;
+    string const getType() const;
+
 
     void setRegister (Library* library);
 

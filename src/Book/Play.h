@@ -12,6 +12,7 @@ class Play : public Book {
         Play();
         Play(string name, string ISBN, string author="", string editor="", string audiance="", int century=0);
         int getCentury() const;
+        string getType() const;
 
 };
 

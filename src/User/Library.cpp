@@ -48,6 +48,10 @@ int Library::getCreated() const {
     return created;
 }
 
+string const Library::getType() const {
+    return "Library";
+}
+
 ostream &operator<<(ostream &os,  const Library &library) {
     os << "Type: Library" << endl;
     os << "id: " << library.getId() << endl;

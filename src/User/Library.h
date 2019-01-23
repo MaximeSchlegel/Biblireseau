@@ -29,6 +29,7 @@ public:
     string const &getAddress() const;
     vector<Book*> const &getBook() const;
     int getCreated() const;
+    string const getType() const;
 
     friend ostream &operator<<(ostream &os, const Library &library);
     void showBook();

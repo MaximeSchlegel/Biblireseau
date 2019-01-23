@@ -17,3 +17,7 @@ Play::Play(string name, string ISBN, string author, string editor, string audian
 int Play::getCentury() const {
     return this->century;
 }
+
+string Play::getType() const {
+    return "Play";
+}

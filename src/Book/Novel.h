@@ -18,6 +18,7 @@ class Novel : public Book {
         Novel(string name, string ISBN, string author="", string editor="", string audiance="", string genre="");
         static const vector<string> &getValidGenre();
         const string &getGenre() const;
+        string getType() const;
 };
 
 

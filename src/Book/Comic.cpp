@@ -17,3 +17,7 @@ Comic::Comic(string name, string ISBN, string author, string editor, string audi
 const string &Comic::getCartoonist() const {
     return cartoonist;
 }
+
+string Comic::getType() const {
+    return "Comic";
+}

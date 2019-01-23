@@ -16,6 +16,7 @@ class Comic : public Book {
         Comic();
         Comic(string name, string ISBN, string author="", string editor="", string audiance="", string cartoonist="");
         const string &getCartoonist() const;
+        string getType() const;
 };
 
 

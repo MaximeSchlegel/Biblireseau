@@ -7,16 +7,17 @@
 using namespace std;
 
 class Poetry : public Book {
-private:
-    bool verse;
-    bool prose ;
+    private:
+        bool verse;
+        bool prose ;
 
-public:
-    Poetry();
-    Poetry(string name, string ISBN, string author="", string editor="", string audiance="", bool verse=false, bool prose=false);
+    public:
+        Poetry();
+        Poetry(string name, string ISBN, string author="", string editor="", string audiance="", bool verse=false, bool prose=false);
 
-    bool isVerse() const;
-    bool isProse() const;
+        bool isVerse() const;
+        bool isProse() const;
+        string getType() const;
 };
 
 

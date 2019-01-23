@@ -14,6 +14,7 @@ public:
     virtual string const &getName() const = 0;
     virtual string const &getAddress() const = 0;
     virtual vector<Book*> const &getBook() const = 0;
+    virtual string const getType() const =0;
 };
 
 

@@ -23,3 +23,7 @@ bool Poetry::isVerse() const {
 bool Poetry::isProse() const {
     return prose;
 }
+
+string Poetry::getType() const {
+    return "Poetry";
+}
