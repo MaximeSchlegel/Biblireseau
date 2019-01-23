@@ -77,7 +77,7 @@ void Library::showBook() {
     }
 }
 
-void Library::showBook(String category) {
+void Library::showBook(string category) {
     cout << typeid(category).name() << " from " << this->getName() << endl;
     if (not empty(this->bookList)) {
         for (int i = 0; i < this->bookList.size(); i++) {
