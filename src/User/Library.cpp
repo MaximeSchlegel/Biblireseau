@@ -77,11 +77,11 @@ void Library::showBook() {
     }
 }
 
-void Library::showBook(Book* category) {
+void Library::showBook(String category) {
     cout << typeid(category).name() << " from " << this->getName() << endl;
     if (not empty(this->bookList)) {
         for (int i = 0; i < this->bookList.size(); i++) {
-            if (typeid(this->bookList[i]) == typeid(category)) {
+            if (this->bookList[i]->getType() == category) {
                 cout << "    - " << this->bookList[i]->getTitle() << endl;
             }
         }
