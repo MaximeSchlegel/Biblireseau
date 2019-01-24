@@ -143,6 +143,9 @@ void Network::member_borrow_menu(Member *member) {
         cout << "Entrez un code de livre correct pour continuer ou entrer 0 pour retourner à votre espace : ";
         cin >> id;
     }
+    if (id == 0) {
+        this->main_menu();
+    }
     cout << "Code correct. \n";
     this->member_confirm_borrow_menu(member, &bookList[id]);
 }
@@ -175,6 +178,9 @@ void Network::member_return_menu(Member *member) {
         cout << "\n \nCe code livre est inexistant. \n ";
         cout << "Entrez un code de livre correct pour continuer ou entrer 0 pour retourner à votre espace : ";
         cin >> id;
+    }
+    if (id == 0) {
+        this->main_menu();
     }
     cout << "Code correct. \n";
     member_confirm_return_menu(member,&bookList[id]);
@@ -253,22 +259,25 @@ void Network::library_borrow_menu(Library* library) {
     cout << "Veuillez entrer l'ISBN du livre que vous voulez emprunter \n ou entrez 0 pour revenir dans votre espace bibliothèque:\n ";
     cin >> ISBN;
     pair<bool,int> search = this->search_book(ISBN);
-    if (!search.first){
+    while (!search.first){
         cout << "\n \nCe  livre est inexistant. \n ";
         cout << "Entrez un code de livre correct pour continuer ou entrer 0 pour retourner à votre espace : ";
         cin >> ISBN;
+        search = this->search_book(ISBN);
+    }
+    search = this->search_book_for_borrow(ISBN);
+    if (!search.first){
+        cout << "\n \nCe  livre n'est pas disponible. \n ";
+        cout << "Entrez un code de livre disponible pour continuer ou entrer 0 pour retourner à votre espace : ";
+        cin >> ISBN;
+        this->library_borrow_menu(library);
+        exit(0);
     }else{
-        search = this->search_book_for_borrow(ISBN);
-        if (!search.first){
-            cout << "\n \nCe  livre n'est pas disponible. \n ";
-            cout << "Entrez un code de livre disponible pour continuer ou entrer 0 pour retourner à votre espace : ";
-            cin >> ISBN;
-        }else{
-            cout << "Code correct. \n";
-            this->library_confirm_borrow_menu((&bookList[search.second])->getOwner(), &bookList[search.second]);
-        }
+        cout << "Code correct. \n";
+        this->library_confirm_borrow_menu((&bookList[search.second])->getOwner(), &bookList[search.second]);
     }
 }
+
 
 void Network::library_confirm_borrow_menu(Library *library, Book* book) {
     char choice;
@@ -288,20 +297,20 @@ void Network::library_confirm_borrow_menu(Library *library, Book* book) {
     this->library_borrow_menu(library);
 }
 
-void Network::library_return_menu(Library* library) { //pas fini
+void Network::library_return_menu(Library* library) {
     string ISBN;
     cout << "Veuillez entrer l'ISBN du livre que vous voulez rendre \n ou entrez 0 pour revenir dans votre espace bibliothèque:\n ";
     cin >> ISBN;
     pair<bool,int> search = this->search_book(ISBN);
     if (!search.first){
         cout << "\n \nCe  livre est inexistant. \n ";
-        cout << "Entrez un code de livre correct pour continuer ou entrer 0 pour retourner à votre espace : ";
+        cout << "Entrez un ISBN de livre correct pour continuer ou entrer 0 pour retourner à votre espace : ";
         cin >> ISBN;
     }else{
         search = this->search_book_for_return(ISBN,library);
         if (!search.first){
             cout << "\n \nCe  livre n'est pas chez vous. \n ";
-            cout << "Entrez un code de livre en votre possession pour continuer ou entrer 0 pour retourner à votre espace : ";
+            cout << "Entrez un ISBN de livre en votre possession pour continuer ou entrer 0 pour retourner à votre espace : ";
             cin >> ISBN;
         }else{
             cout << "Code correct. \n";
@@ -325,11 +334,24 @@ void Network::library_confirm_return_menu(Library *library, Book *book) {
     if (choice == 'O'){
         library->returnBook(book->getId());
     }
-    this->library_borrow_menu(library);
+    this->library_return_menu(library);
 }
 
 void Network::library_sell_book_menu(Library* library) { //pas fini
-
+    int id;
+    cout << "Veuillez entrer le code du livre que vous voulez supprimer \n ou entrez 0 pour revenir dans votre espace bibliothèque:\n ";
+    cin >> id;
+    while (id >= bookList.size() or id < 0) {
+        cout << "\n \nCe code livre est inexistant. \n ";
+        cout << "Entrez un code de livre correct pour continuer ou entrer 0 pour retourner à votre espace : ";
+        cin >> id;
+    }
+    if (id == 0) {
+        this->main_menu();
+    }
+    cout << "Code correct. \n";
+    library->trashBook(id);
+    this->library_sell_book_menu(library);
 }
 
 //void Network::admin_menu(){
@@ -431,22 +453,28 @@ void Network::buy_Album_menu(string title, string ISBN, string author, string ed
     if (choice == 'O'){
         drawing = true;
     }
+    this->addBook(Album(title, ISBN, author, editor, audiance,picture,drawing));
+    library->buyBook(&this->bookList[this->bookList.size()- 1]);
 }
 
 void Network::buy_Comic_menu(string title, string ISBN, string author, string editor, string audiance, Library *library) {
-
+    cout << "pas codé";
+    this->main_menu();
 }
 
 void Network::buy_Novel_menu(string title, string ISBN, string author, string editor, string audiance, Library *library) {
-
+    cout << "pas codé";
+    this->main_menu();
 }
 
 void Network::buy_Play_menu(string title, string ISBN, string author, string editor, string audiance, Library *library) {
-
+    cout << "pas codé";
+    this->main_menu();
 }
 
 void Network::buy_Poetry_menu(string title, string ISBN, string author, string editor, string audiance, Library *library) {
-
+    cout << "pas codé";
+    this->main_menu();
 }
 
 //void Network::admin_create_library() {
