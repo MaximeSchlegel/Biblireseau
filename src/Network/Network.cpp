@@ -288,7 +288,7 @@ void Network::library_confirm_borrow_menu(Library *library, Book* book) {
     this->library_borrow_menu(library);
 }
 
-void Network::library_return_menu(Library* library) { //pas fini
+void Network::library_return_menu(Library* library) {
     string ISBN;
     cout << "Veuillez entrer l'ISBN du livre que vous voulez rendre \n ou entrez 0 pour revenir dans votre espace bibliothèque:\n ";
     cin >> ISBN;
@@ -325,7 +325,7 @@ void Network::library_confirm_return_menu(Library *library, Book *book) {
     if (choice == 'O'){
         library->returnBook(book->getId());
     }
-    this->library_borrow_menu(library);
+    this->library_return_menu(library);
 }
 
 void Network::library_sell_book_menu(Library* library) { //pas fini
@@ -431,22 +431,24 @@ void Network::buy_Album_menu(string title, string ISBN, string author, string ed
     if (choice == 'O'){
         drawing = true;
     }
+    this->addBook(Album(title, ISBN, author, editor, audiance,picture,drawing));
+    this->bookList[this->bookList.size() - 1].setOwner(library);
 }
 
 void Network::buy_Comic_menu(string title, string ISBN, string author, string editor, string audiance, Library *library) {
-
+    this->main_menu();
 }
 
 void Network::buy_Novel_menu(string title, string ISBN, string author, string editor, string audiance, Library *library) {
-
+    this->main_menu();
 }
 
 void Network::buy_Play_menu(string title, string ISBN, string author, string editor, string audiance, Library *library) {
-
+    this->main_menu();
 }
 
 void Network::buy_Poetry_menu(string title, string ISBN, string author, string editor, string audiance, Library *library) {
-
+    this->main_menu();
 }
 
 //void Network::admin_create_library() {
