@@ -263,7 +263,7 @@ void Network::library_borrow_menu(Library* library) {
         cout << "\n \nCe  livre est inexistant. \n ";
         cout << "Entrez un code de livre correct pour continuer ou entrer 0 pour retourner à votre espace : ";
         cin >> ISBN;
-        search = this->search_book(ISBN)
+        search = this->search_book(ISBN);
     }
     search = this->search_book_for_borrow(ISBN);
     if (!search.first){
