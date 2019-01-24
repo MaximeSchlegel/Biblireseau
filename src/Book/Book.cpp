@@ -109,7 +109,7 @@ ostream &operator<<(ostream &os, const Book &book) {
 }
 
 
-bool Book::borrowed() {
+bool Book::isBorrowed() {
     if (dynamic_cast<Member *>(this->location)) {
         return true;
     }

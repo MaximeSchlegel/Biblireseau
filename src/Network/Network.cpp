@@ -114,6 +114,7 @@ void Network::member_menu() {
 void Network::member_authentificated_menu(Member* member) {
     int choice;
     cout << "\nBonjour " << member->getName() << " ,bienvenue sur votre espace adh\202rent. \n \n";
+    cout << "Informations Personelles :" << endl << *member;
     cout << "Appuyez sur 1 pour emprunter un livre \n";
     cout << "Appuyez sur 2 pour rendre un livre \n";
     cout << "Appuyer sur 3 pour vous d\202connecter \n \n";
@@ -144,7 +145,7 @@ void Network::member_borrow_menu(Member *member) {
     cin >> id;
     while (id >= bookList.size() or id < 0) {
         cout << "\n \nCe code livre est inexistant. \n ";
-        cout << "Entrez un code de livre correct pour continuer ou entrer 0 pour retourner à votre espace : ";
+        cout << "Entrez un code de livre correct pour continuer ou entrer 0 pour retourner à votre espace : " << endl;
         cin >> id;
     }
     if (id == 0) {

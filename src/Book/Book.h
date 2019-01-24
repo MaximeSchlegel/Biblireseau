@@ -44,7 +44,7 @@ public:
 
     friend ostream &operator<<(ostream &os, const Book &book);
 
-    bool borrowed ();
+    bool isBorrowed ();
 };
 
 
