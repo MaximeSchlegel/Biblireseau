@@ -152,6 +152,11 @@ void Network::member_borrow_menu(Member *member) {
         this->member_authentificated_menu(member);
         exit(0);
     }
+    while(!member->getRegistered()->haveBook(id).first) {
+        cout << "Ce livre n'est pas deans la bibliotheque" << endl;
+        cout << "Entrez un code de livre correct pour continuer ou entrer 0 pour retourner à votre espace : " << endl;
+        cin >> id;
+    }
     cout << "Code correct. \n";
     this->member_confirm_borrow_menu(member, &bookList[id]);
     exit(0);
@@ -170,8 +175,10 @@ void Network::member_confirm_borrow_menu(Member* member, Book* book){
         cin >> choice;
     }
     if (choice == 'O'){
-        member->borrowBook(book->getId());
-        cout << "\n \nLe livre a bien été emprunté";
+        try {
+            member->borrowBook(book->getId());
+            cout << "\n \nLe livre a bien été emprunté";
+        } catch (error_code) {}
     }
     this->member_borrow_menu(member);
     exit(0);

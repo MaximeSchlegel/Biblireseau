@@ -49,7 +49,7 @@ const string &Member::getPhone() const {
     return phone;
 }
 
-Library *Member::getRegistered() const {
+Library *Member::getRegistered() const{
     return registered;
 }
 
