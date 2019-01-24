@@ -108,11 +108,12 @@ void Network::member_menu() {
     }
     cout << "Identifiant correct. Connexion en cours. \n";
     this -> member_authentificated_menu(&memberList[id]);
+    exit(0);
 }
 
 void Network::member_authentificated_menu(Member* member) {
     int choice;
-    cout << "Bonjour " << member->getName() << " ,bienvenue sur votre espace adh\202rent. \n \n";
+    cout << "\nBonjour " << member->getName() << " ,bienvenue sur votre espace adh\202rent. \n \n";
     cout << "Appuyez sur 1 pour emprunter un livre \n";
     cout << "Appuyez sur 2 pour rendre un livre \n";
     cout << "Appuyer sur 3 pour vous d\202connecter \n \n";
@@ -124,12 +125,15 @@ void Network::member_authentificated_menu(Member* member) {
     }
     if (choice == 1){
         this->member_borrow_menu(member);
+        exit(0);
     }
     if (choice == 2) {
         this->member_return_menu(member);
+        exit(0);
     }
     if (choice == 3) {
         this->main_menu();
+        exit(0);
     }
 }
 
@@ -144,16 +148,18 @@ void Network::member_borrow_menu(Member *member) {
         cin >> id;
     }
     if (id == 0) {
-        this->main_menu();
+        this->member_authentificated_menu(member);
+        exit(0);
     }
     cout << "Code correct. \n";
     this->member_confirm_borrow_menu(member, &bookList[id]);
+    exit(0);
 }
 
 void Network::member_confirm_borrow_menu(Member* member, Book* book){
     char choice;
-    cout << member->getName() << ",vous avez s\202lectionnn\202 le livre suivant : \n \n ";
-    cout << book ;
+    cout << "\n\n" << member->getName() << ",vous avez s\202lectionnn\202 le livre suivant : \n \n ";
+    cout << *book ;
     cout << "Confirmez-vous l'emprunt de ce livre ? \n";
     cout << "Entrez O pour oui ou N pour non : ";
     cin >> choice;
@@ -167,6 +173,7 @@ void Network::member_confirm_borrow_menu(Member* member, Book* book){
         cout << "\n \nLe livre a bien été emprunté";
     }
     this->member_borrow_menu(member);
+    exit(0);
 }
 
 void Network::member_return_menu(Member *member) {
@@ -180,16 +187,18 @@ void Network::member_return_menu(Member *member) {
         cin >> id;
     }
     if (id == 0) {
-        this->main_menu();
+        this->member_authentificated_menu(member);
+        exit(0);
     }
     cout << "Code correct. \n";
     member_confirm_return_menu(member,&bookList[id]);
+    exit(0);
 }
 
 void Network::member_confirm_return_menu(Member* member, Book* book){
     char choice;
     cout << member->getName() << ",vous avez s\202lectionnn\202 le livre suivant : \n \n ";
-    cout << book ;
+    cout << *book ;
     cout << "Confirmez-vous le retour de ce livre ? \n";
     cout << "Entrez O pour oui ou N pour non : ";
     cin >> choice;
@@ -203,6 +212,7 @@ void Network::member_confirm_return_menu(Member* member, Book* book){
         cout << "\n \nLe livre a bien été retourné";
     }
     this->member_return_menu(member);
+    exit(0);
 }
 
 void Network::library_menu() {
@@ -252,6 +262,7 @@ void Network::library_authentificated_menu(Library* library) {
     if (choice == 5){
         this->main_menu();
     }
+    exit(0);
 }
 
 void Network::library_borrow_menu(Library* library) {
@@ -275,6 +286,7 @@ void Network::library_borrow_menu(Library* library) {
     }else{
         cout << "Code correct. \n";
         this->library_confirm_borrow_menu((&bookList[search.second])->getOwner(), &bookList[search.second]);
+        exit(0);
     }
 }
 
@@ -282,7 +294,7 @@ void Network::library_borrow_menu(Library* library) {
 void Network::library_confirm_borrow_menu(Library *library, Book* book) {
     char choice;
     cout << library->getName() << ",vous avez s\202lectionnn\202 le livre suivant : \n \n ";
-    cout << book ;
+    cout << *book ;
     cout << "Confirmez-vous l'emprunt de ce livre ? \n";
     cout << "Entrez O pour oui ou N pour non : ";
     cin >> choice;
@@ -295,34 +307,49 @@ void Network::library_confirm_borrow_menu(Library *library, Book* book) {
         library->askBook(book->getISBN(),book->getOwner());
     }
     this->library_borrow_menu(library);
+    exit(0);
 }
 
-void Network::library_return_menu(Library* library) {
+void Network::library_return_menu(Library* library) { // Déso celle-ci est très très peu opti
     string ISBN;
     cout << "Veuillez entrer l'ISBN du livre que vous voulez rendre \n ou entrez 0 pour revenir dans votre espace bibliothèque:\n ";
     cin >> ISBN;
     pair<bool,int> search = this->search_book(ISBN);
+    if (ISBN == "0") {
+        this->library_authentificated_menu(library);
+        exit(0);
+    }
     if (!search.first){
         cout << "\n \nCe  livre est inexistant. \n ";
         cout << "Entrez un ISBN de livre correct pour continuer ou entrer 0 pour retourner à votre espace : ";
         cin >> ISBN;
+        if (ISBN == "0") {
+            this->library_authentificated_menu(library);
+            exit(0);
+        }
     }else{
         search = this->search_book_for_return(ISBN,library);
         if (!search.first){
             cout << "\n \nCe  livre n'est pas chez vous. \n ";
             cout << "Entrez un ISBN de livre en votre possession pour continuer ou entrer 0 pour retourner à votre espace : ";
             cin >> ISBN;
+            if (ISBN == "0") {
+                this->library_authentificated_menu(library);
+                exit(0);
+            }
         }else{
             cout << "Code correct. \n";
             this->library_confirm_return_menu((&bookList[search.second])->getOwner(), &bookList[search.second]);
+            exit(0);
         }
     }
+    this->library_return_menu(library);
 }
 
 void Network::library_confirm_return_menu(Library *library, Book *book) {
     char choice;
     cout << library->getName() << ",vous avez s\202lectionnn\202 le livre suivant : \n \n ";
-    cout << book ;
+    cout << *book ;
     cout << "Confirmez-vous le retour de ce livre ? \n";
     cout << "Entrez O pour oui ou N pour non : ";
     cin >> choice;
@@ -335,6 +362,7 @@ void Network::library_confirm_return_menu(Library *library, Book *book) {
         library->returnBook(book->getId());
     }
     this->library_return_menu(library);
+    exit(0);
 }
 
 void Network::library_sell_book_menu(Library* library) { //pas fini
@@ -347,7 +375,8 @@ void Network::library_sell_book_menu(Library* library) { //pas fini
         cin >> id;
     }
     if (id == 0) {
-        this->main_menu();
+        this->library_authentificated_menu(library);
+        exit(0);
     }
     cout << "Code correct. \n";
     library->trashBook(id);
@@ -412,18 +441,27 @@ void Network::library_buy_book_menu(Library* library) { //pas fini
     cin >> audiance;
     if (choice == 1){
         buy_Album_menu(title, ISBN, author, editor, audiance, library);
+        exit(0);
     }
     if (choice == 2){
         buy_Comic_menu(title, ISBN, author, editor, audiance, library);
+        exit(0);
     }
     if (choice == 3){
         buy_Novel_menu(title, ISBN, author, editor, audiance, library);
+        exit(0);
     }
     if (choice == 4){
         buy_Play_menu(title, ISBN, author, editor, audiance, library);
+        exit(0);
     }
     if (choice == 5){
         buy_Poetry_menu(title, ISBN, author, editor, audiance, library);
+        exit(0);
+    }
+    if (choice == 6){
+        this->library_authentificated_menu(library);
+        exit(0);
     }
 }
 
@@ -455,6 +493,7 @@ void Network::buy_Album_menu(string title, string ISBN, string author, string ed
     }
     this->addBook(Album(title, ISBN, author, editor, audiance,picture,drawing));
     library->buyBook(&this->bookList[this->bookList.size()- 1]);
+    this->library_authentificated_menu(library);
 }
 
 void Network::buy_Comic_menu(string title, string ISBN, string author, string editor, string audiance, Library *library) {
