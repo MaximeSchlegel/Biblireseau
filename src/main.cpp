@@ -78,6 +78,8 @@ int main() {
     network1.addBook(book8);
     network1.addBook(book9);
     network1.main_menu();
+    library1.showBook();
+    library2.showBook();
 //    SaveManager save = SaveManager();
 //    save.save(network1, """C:/Users/Altar FrozenLight/CLionProjects/Biblireseau/db/""");
 

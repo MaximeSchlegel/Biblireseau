@@ -104,11 +104,11 @@ void Network::member_menu() {
     }
     if (id == 0 ){
         this->main_menu();
-        exit(0);
+        return;
     }
     cout << "Identifiant correct. Connexion en cours. \n";
     this -> member_authentificated_menu(&memberList[id]);
-    exit(0);
+    return;
 }
 
 void Network::member_authentificated_menu(Member* member) {
@@ -126,15 +126,15 @@ void Network::member_authentificated_menu(Member* member) {
     }
     if (choice == 1){
         this->member_borrow_menu(member);
-        exit(0);
+        return;
     }
     if (choice == 2) {
         this->member_return_menu(member);
-        exit(0);
+        return;
     }
     if (choice == 3) {
         this->main_menu();
-        exit(0);
+        return;
     }
 }
 
@@ -150,7 +150,7 @@ void Network::member_borrow_menu(Member *member) {
     }
     if (id == 0) {
         this->member_authentificated_menu(member);
-        exit(0);
+        return;
     }
     while(!member->getRegistered()->haveBook(id).first) {
         cout << "Ce livre n'est pas deans la bibliotheque" << endl;
@@ -159,7 +159,7 @@ void Network::member_borrow_menu(Member *member) {
     }
     cout << "Code correct. \n";
     this->member_confirm_borrow_menu(member, &bookList[id]);
-    exit(0);
+    return;
 }
 
 void Network::member_confirm_borrow_menu(Member* member, Book* book){
@@ -181,7 +181,7 @@ void Network::member_confirm_borrow_menu(Member* member, Book* book){
         } catch (error_code) {}
     }
     this->member_borrow_menu(member);
-    exit(0);
+    return;
 }
 
 void Network::member_return_menu(Member *member) {
@@ -196,11 +196,11 @@ void Network::member_return_menu(Member *member) {
     }
     if (id == 0) {
         this->member_authentificated_menu(member);
-        exit(0);
+        return;
     }
     cout << "Code correct. \n";
     member_confirm_return_menu(member,&bookList[id]);
-    exit(0);
+    return;
 }
 
 void Network::member_confirm_return_menu(Member* member, Book* book){
@@ -220,7 +220,7 @@ void Network::member_confirm_return_menu(Member* member, Book* book){
         cout << "\n \nLe livre a bien été retourné";
     }
     this->member_return_menu(member);
-    exit(0);
+    return;
 }
 
 void Network::library_menu() {
@@ -235,7 +235,7 @@ void Network::library_menu() {
     }
     if (id == 0 ){
         this->main_menu();
-        exit(0);
+        return;
     }
     cout << "Identifiant correct. Connexion en cours. \n";
     this -> library_authentificated_menu(&libraryList[id]);
@@ -270,7 +270,7 @@ void Network::library_authentificated_menu(Library* library) {
     if (choice == 5){
         this->main_menu();
     }
-    exit(0);
+    return;
 }
 
 void Network::library_borrow_menu(Library* library) {
@@ -290,11 +290,11 @@ void Network::library_borrow_menu(Library* library) {
         cout << "Entrez un code de livre disponible pour continuer ou entrer 0 pour retourner à votre espace : ";
         cin >> ISBN;
         this->library_borrow_menu(library);
-        exit(0);
+        return;
     }else{
         cout << "Code correct. \n";
         this->library_confirm_borrow_menu((&bookList[search.second])->getOwner(), &bookList[search.second]);
-        exit(0);
+        return;
     }
 }
 
@@ -315,7 +315,7 @@ void Network::library_confirm_borrow_menu(Library *library, Book* book) {
         library->askBook(book->getISBN(),book->getOwner());
     }
     this->library_borrow_menu(library);
-    exit(0);
+    return;
 }
 
 void Network::library_return_menu(Library* library) { // Déso celle-ci est très très peu opti
@@ -325,7 +325,7 @@ void Network::library_return_menu(Library* library) { // Déso celle-ci est trè
     pair<bool,int> search = this->search_book(ISBN);
     if (ISBN == "0") {
         this->library_authentificated_menu(library);
-        exit(0);
+        return;
     }
     if (!search.first){
         cout << "\n \nCe  livre est inexistant. \n ";
@@ -333,7 +333,7 @@ void Network::library_return_menu(Library* library) { // Déso celle-ci est trè
         cin >> ISBN;
         if (ISBN == "0") {
             this->library_authentificated_menu(library);
-            exit(0);
+            return;
         }
     }else{
         search = this->search_book_for_return(ISBN,library);
@@ -343,12 +343,12 @@ void Network::library_return_menu(Library* library) { // Déso celle-ci est trè
             cin >> ISBN;
             if (ISBN == "0") {
                 this->library_authentificated_menu(library);
-                exit(0);
+                return;
             }
         }else{
             cout << "Code correct. \n";
             this->library_confirm_return_menu((&bookList[search.second])->getOwner(), &bookList[search.second]);
-            exit(0);
+            return;
         }
     }
     this->library_return_menu(library);
@@ -370,7 +370,7 @@ void Network::library_confirm_return_menu(Library *library, Book *book) {
         library->returnBook(book->getId());
     }
     this->library_return_menu(library);
-    exit(0);
+    return;
 }
 
 void Network::library_sell_book_menu(Library* library) { //pas fini
@@ -384,7 +384,7 @@ void Network::library_sell_book_menu(Library* library) { //pas fini
     }
     if (id == 0) {
         this->library_authentificated_menu(library);
-        exit(0);
+        return;
     }
     cout << "Code correct. \n";
     library->trashBook(id);
@@ -449,27 +449,27 @@ void Network::library_buy_book_menu(Library* library) { //pas fini
     cin >> audiance;
     if (choice == 1){
         buy_Album_menu(title, ISBN, author, editor, audiance, library);
-        exit(0);
+        return;
     }
     if (choice == 2){
         buy_Comic_menu(title, ISBN, author, editor, audiance, library);
-        exit(0);
+        return;
     }
     if (choice == 3){
         buy_Novel_menu(title, ISBN, author, editor, audiance, library);
-        exit(0);
+        return;
     }
     if (choice == 4){
         buy_Play_menu(title, ISBN, author, editor, audiance, library);
-        exit(0);
+        return;
     }
     if (choice == 5){
         buy_Poetry_menu(title, ISBN, author, editor, audiance, library);
-        exit(0);
+        return;
     }
     if (choice == 6){
         this->library_authentificated_menu(library);
-        exit(0);
+        return;
     }
 }
 
