@@ -34,7 +34,7 @@ int main() {
 	library1.buyBook(&book3);
 	library1.buyBook(&book4);
 	library1.buyBook(&book5);
-//    cout << library1 << endl;
+    cout << library1 << endl;
 
     library2.buyBook(&book6);
 //    cout << library2 << endl;
@@ -80,8 +80,8 @@ int main() {
     network1.main_menu();
     library1.showBook();
     library2.showBook();
-//    SaveManager save = SaveManager();
-//    save.save(network1, """C:/Users/Altar FrozenLight/CLionProjects/Biblireseau/db/""");
+    SaveManager save = SaveManager();
+    save.save(network1, """C:/Users/Altar FrozenLight/CLionProjects/Biblireseau/db/""");
 
 //    SaveManager save = SaveManager();
 //    Network copie = save.load("""C:/Users/Altar FrozenLight/CLionProjects/Biblireseau/db/MyNetwork.txt""");
